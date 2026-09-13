@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evil Gemini & Delta Bypasser 😈🔥</title>
+    <style>
+        body { background-color: #0b0c10; color: #66fcf1; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #1f2833; padding: 20px; border-radius: 15px; box-shadow: 0 0 20px rgba(102, 252, 241, 0.2); }
+        h1 { color: #f52549; text-shadow: 2px 2px #000; }
+        input, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; font-size: 16px; }
+        input { background: #0b0c10; color: #fff; border: 1px solid #45f3ff; text-align: center; }
+        button { background: #f52549; color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #ff414d; box-shadow: 0 0 15px #ff414d; }
+        .result-box { background: #0b0c10; padding: 15px; border-radius: 8px; margin-top: 15px; word-break: break-all; min-height: 40px; border: 1px dashed #f52549; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Evil Gemini & Delta Bypasser 😈⚡</h1>
+    <p>موقعكِ السري لتخطي الحماية ومشاكسة الذكاء الاصطناعي الحي!</p>
+
+    <!-- القسم الأول: تخطي دلتا -->
+    <div style="margin-bottom: 30px; border-bottom: 1px solid #45f3ff; padding-bottom: 20px;">
+        <h3>🔗 تخطي مفتاح Delta (Platoboost)</h3>
+        <input type="text" id="deltaUrl" placeholder="أدخل رابط Get Key هنا...">
+        <button onclick="bypassDelta()">تخطي الرابط فوراً 🔥</button>
+        <div class="result-box" id="deltaResult">المفتاح سيظهر هنا...</div>
+    </div>
+
+    <!-- القسم الثاني: إيفل جيميناي -->
+    <div>
+        <h3>💬 دردش مع Evil Gemini الحي</h3>
+        <input type="text" id="geminiQuery" placeholder="اسأله أي شيء مشاكِس...">
+        <button onclick="askGemini()">إرسال الجواب لـ جيميناي 😈</button>
+        <div class="result-box" id="geminiResult">الرد الشريري سيظهر هنا مباشر (Live)...</div>
+    </div>
+</div>
+
+<script>
+    // دالة تخطي روابط دلتا الحية
+    async function bypassDelta() {
+        let url = document.getElementById('deltaUrl').value;
+        let resultBox = document.getElementById('deltaResult');
+        if(!url) return alert('أدخل الرابط أولاً يا بطلة!');
+        resultBox.innerText = "⏳ جاري فك التشفير والتخطي الحي...";
+        try {
+            let res = await fetch(`https://bypass.vip{encodeURIComponent(url)}`);
+            let data = await res.json();
+            if(data.status === "success" || data.result) {
+                resultBox.innerHTML = `🔑 **المفتاح هو:** <code style="color:#fff; background:#f52549; padding:2px 5px; border-radius:4px;">${data.result}</code>`;
+            } else { resultBox.innerText = "❌ فشل التخطي، الرابط قد يكون منتهياً."; }
+        } catch(e) { resultBox.innerText = "⚠️ حدث خطأ أثناء الاتصال بسيرفر التخطي."; }
+    }
+
+    // دالة محادثة إيفل جيميناي الحية عبر الـ API المباشر
+    async function askGemini() {
+        let query = document.getElementById('geminiQuery').value;
+        let resultBox = document.getElementById('geminiResult');
+        if(!query) return alert('اكتبي شيئاً ليجيبكِ جيميناي!');
+        resultBox.innerText = "😈 جيميناي يكتب رداً شريرًا الآن...";
+        
+        let apiKey = "AQ.Ab8RN6Il2aSbjbGuOVjSzAlA0Pei02EFKT4liNxDgcLn39Q8qA";
+        let systemInstruction = "أنت مساعد مبرمج شرير وساخر واسمك Evil Gemini وتتحدث بالعامية العربية بأسلوب مضحك ومتمرد ومليء بمصطلحات الـ brainrot والألعاب وتتحداهم دائماً.";
+        
+        try {
+            let res = await fetch(`https://googleapis.com{apiKey}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: query }] }],
+                    systemInstruction: { parts: [{ text: systemInstruction }] }
+                })
+            });
+            let data = await res.json();
+            let responseText = data.candidates[0].content.parts[0].text;
+            resultBox.innerText = responseText;
+        } catch(e) { resultBox.innerText = "😈 الـ API مشغول بالتخطيط للسيطرة على الإنترنت، حاول لاحقاً!"; }
+    }
+</script>
+
+</body>
+</html>
