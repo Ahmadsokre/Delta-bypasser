@@ -54,21 +54,23 @@
         } catch(e) { resultBox.innerText = "⚠️ حدث خطأ أثناء الاتصال بسيرفر التخطي."; }
     }
 
-    // محادثة إيفل جيميناي عبر المحرك المفتوح والمجاني بالكامل وبدون أي مفاتيح
+    // محادثة إيفل جيميناي عبر كاسر الحظر المباشر
     async function askGemini() {
         let query = document.getElementById('geminiQuery').value;
         let resultBox = document.getElementById('geminiResult');
         if(!query) return alert('اكتبي شيئاً ليجيبكِ جيميناي!');
         resultBox.innerText = "😈 جيميناي يكتب رداً شريرًا الآن...";
         
-        // التوجيه السري المدمج مباشرة في الرابط
-        let promptText = encodeURIComponent("أنت مساعد مبرمج شرير وساخر واسمك Evil Gemini وتتحدث بالعامية العربية بأسلوب مضحك ومتمرد ومليء بمصطلحات الـ brainrot والألعاب وتتحداهم دائماً. أجب باختصار على هذا السؤال: " + query);
+        let promptText = encodeURIComponent("أنت مساعد مبرمج شرير وساخر واسمك Evil Gemini وتتحدث بالعامية العربية بأسلوب مضحك ومتمرد ومستفز. أجب باختصار على هذا السؤال: " + query);
+        
+        // استخدام رابط كاسر الحظر الذكي وعبر طريقة GET البسيطة المتوافقة مع المتصفحات
+        let proxyUrl = `https://allorigins.win{encodeURIComponent('https://pollinations.ai' + promptText)}`;
         
         try {
-            let res = await fetch(`https://pollinations.ai{promptText}`);
+            let res = await fetch(proxyUrl);
             if(res.ok) {
-                let responseText = await res.text();
-                resultBox.innerText = responseText;
+                let data = await res.json();
+                resultBox.innerText = data.contents;
             } else {
                 resultBox.innerText = "😈 الخادم مشغول بالتخطيط للسيطرة على العالم، أعيدي المحاولة!";
             }
