@@ -12,14 +12,14 @@
         input { background: #0b0c10; color: #fff; border: 1px solid #45f3ff; text-align: center; }
         button { background: #f52549; color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s; }
         button:hover { background: #ff414d; box-shadow: 0 0 15px #ff414d; }
-        .result-box { background: #0b0c10; padding: 15px; border-radius: 8px; margin-top: 15px; word-break: break-all; min-height: 40px; border: 1px dashed #f52549; }
+        .result-box { background: #0b0c10; padding: 15px; border-radius: 8px; margin-top: 15px; word-break: break-all; min-height: 40px; border: 1px dashed #f52549; color: #fff; font-size: 16px; text-align: right; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Evil Gemini & Delta Bypasser 😈⚡</h1>
-    <p>موقعكِ السري لتخطي الحماية ومشاكسة الذكاء الاصطناعي الحي!</p>
+    <p>موقعكِ السري لتخطي الحماية ومشاكسة الذكاء الاصطناعي الحي مجاناً!</p>
 
     <!-- القسم الأول: تخطي دلتا -->
     <div style="margin-bottom: 30px; border-bottom: 1px solid #45f3ff; padding-bottom: 20px;">
@@ -31,7 +31,7 @@
 
     <!-- القسم الثاني: إيفل جيميناي -->
     <div>
-        <h3>💬 دردش مع Evil Gemini الحي</h3>
+        <h3>💬 دردش مع Evil Gemini الحي (مجاني 100%)</h3>
         <input type="text" id="geminiQuery" placeholder="اسأله أي شيء مشاكِس...">
         <button onclick="askGemini()">إرسال الجواب لـ جيميناي 😈</button>
         <div class="result-box" id="geminiResult">الرد الشريري سيظهر هنا مباشر (Live)...</div>
@@ -39,7 +39,7 @@
 </div>
 
 <script>
-    // تخطي دلتا عبر السيرفر الوسيط المباشر
+    // تخطي روابط دلتا
     async function bypassDelta() {
         let url = document.getElementById('deltaUrl').value;
         let resultBox = document.getElementById('deltaResult');
@@ -54,21 +54,23 @@
         } catch(e) { resultBox.innerText = "⚠️ حدث خطأ أثناء الاتصال بسيرفر التخطي."; }
     }
 
-    // محادثة الذكاء الاصطناعي الحي عبر خادم وكيل مجاني ومفتوح ومقاوم للحظر
+    // محادثة إيفل جيميناي عبر المحرك المفتوح والمجاني بالكامل وبدون أي مفاتيح
     async function askGemini() {
         let query = document.getElementById('geminiQuery').value;
         let resultBox = document.getElementById('geminiResult');
         if(!query) return alert('اكتبي شيئاً ليجيبكِ جيميناي!');
         resultBox.innerText = "😈 جيميناي يكتب رداً شريرًا الآن...";
         
+        // التوجيه السري المدمج مباشرة في الرابط
+        let promptText = encodeURIComponent("أنت مساعد مبرمج شرير وساخر واسمك Evil Gemini وتتحدث بالعامية العربية بأسلوب مضحك ومتمرد ومليء بمصطلحات الـ brainrot والألعاب وتتحداهم دائماً. أجب باختصار على هذا السؤال: " + query);
+        
         try {
-            // استخدام خادم تفاعلي مجاني ومفتوح لمعالجة النصوص الفورية
-            let res = await fetch(`https://allorigins.win{encodeURIComponent('https://pollinations.ai' + query + ' (تحدث كـ Evil Gemini مساعد شرير ساخر بالعامية العربية بأسلوب مضحك ومتمرد ومصطلحات ألعاب)')}`);
-            let data = await res.json();
-            if(data.contents) {
-                resultBox.innerText = data.contents;
+            let res = await fetch(`https://pollinations.ai{promptText}`);
+            if(res.ok) {
+                let responseText = await res.text();
+                resultBox.innerText = responseText;
             } else {
-                resultBox.innerText = "😈 مستواي الشراري عالي جداً حالياً، أعد إرسال سؤالكِ!";
+                resultBox.innerText = "😈 الخادم مشغول بالتخطيط للسيطرة على العالم، أعيدي المحاولة!";
             }
         } catch(e) { 
             resultBox.innerText = "⚠️ فشل الاتصال بخادم المحادثة الحي، حاولي مجدداً."; 
