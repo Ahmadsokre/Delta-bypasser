@@ -39,7 +39,7 @@
 </div>
 
 <script>
-    // دالة تخطي روابط دلتا الحية
+    // تخطي دلتا عبر السيرفر الوسيط المباشر
     async function bypassDelta() {
         let url = document.getElementById('deltaUrl').value;
         let resultBox = document.getElementById('deltaResult');
@@ -54,29 +54,25 @@
         } catch(e) { resultBox.innerText = "⚠️ حدث خطأ أثناء الاتصال بسيرفر التخطي."; }
     }
 
-    // دالة محادثة إيفل جيميناي الحية عبر الـ API المباشر
+    // محادثة الذكاء الاصطناعي الحي عبر خادم وكيل مجاني ومفتوح ومقاوم للحظر
     async function askGemini() {
         let query = document.getElementById('geminiQuery').value;
         let resultBox = document.getElementById('geminiResult');
         if(!query) return alert('اكتبي شيئاً ليجيبكِ جيميناي!');
         resultBox.innerText = "😈 جيميناي يكتب رداً شريرًا الآن...";
         
-        let apiKey = "AQ.Ab8RN6Il2aSbjbGuOVjSzAlA0Pei02EFKT4liNxDgcLn39Q8qA";
-        let systemInstruction = "أنت مساعد مبرمج شرير وساخر واسمك Evil Gemini وتتحدث بالعامية العربية بأسلوب مضحك ومتمرد ومليء بمصطلحات الـ brainrot والألعاب وتتحداهم دائماً.";
-        
         try {
-            let res = await fetch(`https://googleapis.com{apiKey}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: query }] }],
-                    systemInstruction: { parts: [{ text: systemInstruction }] }
-                })
-            });
+            // استخدام خادم تفاعلي مجاني ومفتوح لمعالجة النصوص الفورية
+            let res = await fetch(`https://allorigins.win{encodeURIComponent('https://pollinations.ai' + query + ' (تحدث كـ Evil Gemini مساعد شرير ساخر بالعامية العربية بأسلوب مضحك ومتمرد ومصطلحات ألعاب)')}`);
             let data = await res.json();
-            let responseText = data.candidates.content.parts.text;
-            resultBox.innerText = responseText;
-        } catch(e) { resultBox.innerText = "😈 الـ API مشغول بالتخطيط للسيطرة على الإنترنت، حاول لاحقاً!"; }
+            if(data.contents) {
+                resultBox.innerText = data.contents;
+            } else {
+                resultBox.innerText = "😈 مستواي الشراري عالي جداً حالياً، أعد إرسال سؤالكِ!";
+            }
+        } catch(e) { 
+            resultBox.innerText = "⚠️ فشل الاتصال بخادم المحادثة الحي، حاولي مجدداً."; 
+        }
     }
 </script>
 
